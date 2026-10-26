@@ -21,6 +21,3 @@ def dragon(order: int, size: float) -> None:
     dragon(order - 2, size)
     t.left(45)
     dragon(order - 2, size)
-
-dragon(3, 50)
-t.done()
