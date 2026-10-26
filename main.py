@@ -1,14 +1,7 @@
-"""Единый интерфейс «Фрактальная мастерская» для Роли 4.
-
-Файл должен лежать в корне репозитория рядом с файлами pos*.py
-"""
-
+""" «Фрактальная мастерская» роли 4."""
+ 
 import turtle
 
-# =====================================================================
-# ИМПОРТ ФУНКЦИЙ ИЗ ФАЙЛОВ КОЛЛЕГ
-# Если у коллег функции называются иначе, измените имя после "import"
-# =====================================================================
 from pos1_tree import draw_binary_tree as draw_tree
 from pos1_branch import draw_branch
 
@@ -21,7 +14,7 @@ from pos3_ice2 import ice_fractal_2
 from pos3_levyKriv import levy
 from pos3_dragon_oogway import dragon
 
-# Настройки ограничений, чтобы программа не зависала и не падала
+# Настройки ограничений
 LIMITS = {
     "tree_depth": (1, 12),
     "branch_depth": (1, 10),
@@ -36,8 +29,6 @@ LIMITS = {
     "segment": (1.0, 50.0),
 }
 
-# Включить быструю отрисовку без анимации перемещений? 
-# True - мгновенно, False - черепашка ползает плавно.
 USE_INSTANT_DRAW = True 
 
 
@@ -112,7 +103,6 @@ def finish_drawing() -> None:
 
 
 def main():
-    # Создаем окно один раз при старте
     screen = turtle.Screen()
     screen.title("Фрактальная мастерская — Итог")
     screen.setup(width=900, height=750)
@@ -131,7 +121,7 @@ def main():
             angle = ask_float("Угол ветвления (0-180): ", *LIMITS["angle"])
             print("Рисую...", flush=True)
             reset_canvas("forestgreen")
-            start_place(0, -250, 90) # Дерево растет снизу вверх (90 градусов)
+            start_place(0, -250, 90)
             draw_tree(depth, size, angle)
             finish_drawing()
 
@@ -158,7 +148,6 @@ def main():
             size = ask_float("Длина стороны (10-500): ", *LIMITS["size"])
             print("Рисую...", flush=True)
             reset_canvas("royalblue")
-            # Смещение, чтобы центрировать треугольник
             start_place(-size / 2, size * 0.3, 0)
             koch_snowflake(order, size)
             finish_drawing()
