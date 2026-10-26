@@ -1,13 +1,17 @@
-""" «Фрактальная мастерская» — Главный модуль интерфейса и интеграции."""
- 
 import turtle
 
-# Исправленные импорты согласно новой архитектуре пакета fractals
-from fractals.basic import draw_binary_tree, draw_branch
-from fractals.koch import koch, snowflake as koch_snowflake, minkowski
-from fractals.complex import ice_fractal_1, ice_fractal_2, levy, dragon
+from fractals import (
+    draw_binary_tree,
+    draw_branch,
+    koch,
+    snowflake as koch_snowflake,
+    minkowski,
+    ice_fractal_1,
+    ice_fractal_2,
+    levy,
+    dragon
+)
 
-# Настройки ограничений
 LIMITS = {
     "tree_depth": (1, 12),
     "branch_depth": (1, 10),
@@ -26,7 +30,6 @@ USE_INSTANT_DRAW = True
 
 
 def ask_int(prompt: str, min_val: int, max_val: int) -> int:
-    """Безопасный ввод целого числа."""
     while True:
         try:
             val = int(input(prompt).strip())
@@ -38,7 +41,6 @@ def ask_int(prompt: str, min_val: int, max_val: int) -> int:
 
 
 def ask_float(prompt: str, min_val: float, max_val: float) -> float:
-    """Безопасный ввод вещественного числа."""
     while True:
         try:
             val = float(input(prompt).strip().replace(",", "."))
@@ -67,7 +69,6 @@ def show_menu() -> None:
 
 
 def reset_canvas(color: str = "black") -> None:
-    """Сброс экрана и подготовка черепашки."""
     turtle.reset()
     turtle.hideturtle()
     turtle.speed(0)
@@ -80,7 +81,6 @@ def reset_canvas(color: str = "black") -> None:
 
 
 def start_place(x: float, y: float, heading: float) -> None:
-    """Установка стартовой позиции без рисования линий."""
     turtle.penup()
     turtle.goto(x, y)
     turtle.setheading(heading)
@@ -88,7 +88,6 @@ def start_place(x: float, y: float, heading: float) -> None:
 
 
 def finish_drawing() -> None:
-    """Обновление экрана и ожидание возврата в меню."""
     turtle.penup()
     turtle.update()
     print("\nРисование завершено!")
@@ -97,7 +96,7 @@ def finish_drawing() -> None:
 
 def main():
     screen = turtle.Screen()
-    screen.title("Фрактальная мастерская — Новая Архитектура")
+    screen.title("Фрактальная мастерская")
     screen.setup(width=900, height=750)
     
     while True:
