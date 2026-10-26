@@ -9,49 +9,17 @@ import turtle
 # ИМПОРТ ФУНКЦИЙ ИЗ ФАЙЛОВ КОЛЛЕГ
 # Если у коллег функции называются иначе, измените имя после "import"
 # =====================================================================
-try:
-    from pos1_tree import draw_binary_tree as _draw_tree
-except ImportError:
-    # Альтернативное имя, если назвали просто draw_tree
-    from pos1_tree import _draw_tree
-
+from pos1_tree import draw_binary_tree as draw_tree
 from pos1_branch import draw_branch
 
-try:
-    from pos2_koch import koch
-except ImportError:
-    from pos2_koch import draw_koch as koch
+from pos2_koch import koch
+from pos2_koch_snowflake import snowflake as koch_snowflake
+from pos2_minkowski import minkowski
 
-try:
-    from pos2_koch_snowflake import koch_snowflake
-except ImportError:
-    from pos2_koch_snowflake import draw_snowflake as koch_snowflake
-
-try:
-    from pos2_minkowski import minkowski
-except ImportError:
-    from pos2_minkowski import draw_minkowski as minkowski
-
-try:
-    from pos3_ice1 import ice_fractal_1
-except ImportError:
-    from pos3_ice1 import ice_1 as ice_fractal_1
-
-try:
-    from pos3_ice2 import ice_fractal_2
-except ImportError:
-    from pos3_ice2 import ice_2 as ice_fractal_2
-
-try:
-    from pos3_levyKriv import levy
-except ImportError:
-    from pos3_levyKriv import draw_levy as levy
-
-try:
-    from pos3_dragon_oogway import dragon
-except ImportError:
-    from pos3_dragon_oogway import draw_dragon as dragon
-
+from pos3_ice1 import ice_fractal_1
+from pos3_ice2 import ice_fractal_2
+from pos3_levyKriv import levy
+from pos3_dragon_oogway import dragon
 
 # Настройки ограничений, чтобы программа не зависала и не падала
 LIMITS = {
