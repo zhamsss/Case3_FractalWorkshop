@@ -89,3 +89,21 @@ def draw_branch(n: int, size: float) -> None:
         turtle.backward(size)
 
     grow(n)
+
+
+def main() -> None:
+    """Отдельный запуск «Ветки» для проверки в PyCharm."""
+    screen = turtle.Screen()
+    screen.setup(width=1000, height=800)
+    turtle.speed(0)
+    turtle.hideturtle()
+    turtle.penup()
+    turtle.goto(0, -225)
+    turtle.setheading(90)
+    turtle.pendown()
+    draw_branch(4, 75)
+    turtle.done()
+
+
+if __name__ == "__main__":
+    main()
