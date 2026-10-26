@@ -17,21 +17,6 @@ def ice_fractal_1(order: int, size: float) -> None:
     ice_fractal_1(order - 1, size / 2)
     t.left(90)
     ice_fractal_1(order - 1, size)
-    
-        
-#     if order < n:
-#         while True:
-            
-#             t.forward(100)
-#             t.left(90)
-#             t.forward(50)
-#             t.left(180)
-#             t.forward(50)
-#             t.left(90)
-#             t.forward(100)
-#             t.done()
-
-#             order += 1
 
 ice_fractal_1(5, 50)
 t.done()
