@@ -1,14 +1,9 @@
-"""Роль 1: фрактал «Ветка».
-
-Функция draw_branch(n, size) предназначена для вызова из общего меню.
-Сама по себе при импорте ничего не рисует.
-Перед вызовом установите начальную позицию и направление turtle.
-"""
+"""Рекурсивное построение фрактала «Ветка» с помощью turtle."""
 
 import turtle
 
 
-def _shoot(order: int, length: float) -> None:
+def _draw_shoot(order: int, length: float) -> None:
     """Прямой побег с небольшими парными отростками"""
     if order <= 1:
         turtle.forward(length)
@@ -36,7 +31,7 @@ def _shoot(order: int, length: float) -> None:
     turtle.backward(length)
 
 
-def _diagonal_branch(level: int, step: float, base_size: float,
+def _draw_diagonal_branch(level: int, step: float, base_size: float,
                      axis: float, side: int, max_shoot: float | None = None) -> None:
     """Диагональная ветка с вертикальными и горизонтальными побегами."""
     turtle.forward(step)
@@ -47,27 +42,25 @@ def _diagonal_branch(level: int, step: float, base_size: float,
             shoot_size = min(shoot_size, max_shoot)
         # Рисуем вертикальный побег и горизонтальный побег наружу.
         turtle.setheading(axis)
-        _shoot(level - 1, shoot_size)
+        _draw_shoot(level - 1, shoot_size)
         turtle.setheading(axis + side * 90)
-        _shoot(level - 1, shoot_size)
+        _draw_shoot(level - 1, shoot_size)
         turtle.setheading(diagonal_heading)
 
     if level > 0:
-        _diagonal_branch(level - 1, step, base_size, axis, side, max_shoot)
+        _draw_diagonal_branch(level - 1, step, base_size, axis, side, max_shoot)
     turtle.backward(step)
 
 
 def draw_branch(n: int, size: float) -> None:
-    """«Ветка»: вертикальный ствол, симметричные диагонали и побеги.
-
-    """
+    """Рисует ствол с симметричными ветвями и боковыми побегами."""
     if not isinstance(n, int) or n < 0:
         raise ValueError("Глубина должна быть целым числом от 0")
     if not 0 < size:
         raise ValueError("Длина должна быть больше нуля")
 
     # На глубине 5+ длинные побеги начинают пересекать соседние ярусы.
-    # При n <= 4 геометрия остаётся точно такой же, как в образце.
+    # При n <= 4 ограничение длины побегов не требуется.
     max_shoot = None if n <= 4 else (2.6 / n) * size
 
     def grow(level: int) -> None:
@@ -81,9 +74,9 @@ def draw_branch(n: int, size: float) -> None:
         # От основания к верхушке длина парных диагоналей убывает.
         step = 0.5 * size * level / (level + 1)
         turtle.setheading(axis + 45)
-        _diagonal_branch(level, step, size, axis, +1, max_shoot)
+        _draw_diagonal_branch(level, step, size, axis, +1, max_shoot)
         turtle.setheading(axis - 45)
-        _diagonal_branch(level, step, size, axis, -1, max_shoot)
+        _draw_diagonal_branch(level, step, size, axis, -1, max_shoot)
         turtle.setheading(axis)
         grow(level - 1)
         turtle.backward(size)
