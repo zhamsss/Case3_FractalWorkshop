@@ -1,6 +1,3 @@
-```python
-import turtle as t
-
 def koch(order, size):
     if order == 0:
         t.forward(size)
@@ -12,4 +9,3 @@ def koch(order, size):
     koch(order - 1, size / 3)
     t.left(60)
     koch(order - 1, size / 3)
-``` 
