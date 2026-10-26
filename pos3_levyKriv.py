@@ -14,6 +14,3 @@ def levy(order: int, size: float) -> None:
     t.right(90)
     levy(order - 1, size)
     t.left(45)
-
-levy(3, 50)
-t.done()
