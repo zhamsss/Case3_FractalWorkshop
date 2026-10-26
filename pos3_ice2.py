@@ -26,6 +26,3 @@ def ice_fractal_2(order: int, size: float) -> None:
     ice_fractal_2(order - 1, size / 2)
     t.left(115)
     ice_fractal_2(order - 1, size)
-
-ice_fractal_2(3, 50)
-t.done()
