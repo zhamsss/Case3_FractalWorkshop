@@ -1,7 +1,7 @@
 import turtle as t
 
 def levy(order: int, size: float) -> None:
-    if order == 1:
+    if order == 0:
         t.left(45)
         t.forward(size)
         t.right(90)

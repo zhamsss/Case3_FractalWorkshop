@@ -1,7 +1,7 @@
 import turtle as t
 
 def ice_fractal_2(order: int, size: float) -> None:
-    if order == 1:
+    if order == 0:
         t.forward(size)
         t.left(115)
         t.forward(size / 2)
