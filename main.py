@@ -138,11 +138,10 @@ def main():
         elif choice == "2":
             depth = ask_int("Глубина рекурсии (1-10): ", *LIMITS["branch_depth"])
             size = ask_float("Размер ветки (10-400): ", *LIMITS["size"])
-            angle = ask_float("Угол отклонения (0-180): ", *LIMITS["angle"])
             print("Рисую...", flush=True)
             reset_canvas("darkgreen")
             start_place(0, -250, 90)
-            draw_branch(depth, size, angle)
+            draw_branch(depth, size)
             finish_drawing()
 
         elif choice == "3":
