@@ -1,18 +1,11 @@
-""" «Фрактальная мастерская» роли 4."""
+""" «Фрактальная мастерская» — Главный модуль интерфейса и интеграции."""
  
 import turtle
 
-from pos1_tree import draw_binary_tree as draw_tree
-from pos1_branch import draw_branch
-
-from pos2_koch import koch
-from pos2_koch_snowflake import snowflake as koch_snowflake
-from pos2_minkowski import minkowski
-
-from pos3_ice1 import ice_fractal_1
-from pos3_ice2 import ice_fractal_2
-from pos3_levyKriv import levy
-from pos3_dragon_oogway import dragon
+# Исправленные импорты согласно новой архитектуре пакета fractals
+from fractals.basic import draw_binary_tree, draw_branch
+from fractals.koch import koch, snowflake as koch_snowflake, minkowski
+from fractals.complex import ice_fractal_1, ice_fractal_2, levy, dragon
 
 # Настройки ограничений
 LIMITS = {
@@ -104,7 +97,7 @@ def finish_drawing() -> None:
 
 def main():
     screen = turtle.Screen()
-    screen.title("Фрактальная мастерская — Итог")
+    screen.title("Фрактальная мастерская — Новая Архитектура")
     screen.setup(width=900, height=750)
     
     while True:
@@ -122,7 +115,7 @@ def main():
             print("Рисую...", flush=True)
             reset_canvas("forestgreen")
             start_place(0, -250, 90)
-            draw_tree(depth, size, angle)
+            draw_binary_tree(depth, size, angle)
             finish_drawing()
 
         elif choice == "2":
