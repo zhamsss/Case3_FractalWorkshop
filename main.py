@@ -10,10 +10,10 @@ import turtle
 # Если у коллег функции называются иначе, измените имя после "import"
 # =====================================================================
 try:
-    from pos1_tree import draw_binary_tree as draw_tree
+    from pos1_tree import draw_binary_tree as _draw_tree
 except ImportError:
     # Альтернативное имя, если назвали просто draw_tree
-    from pos1_tree import draw_tree
+    from pos1_tree import _draw_tree
 
 from pos1_branch import draw_branch
 
