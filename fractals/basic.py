@@ -40,7 +40,6 @@ def _draw_diagonal_branch(level: int, step: float, base_size: float,
         turtle.setheading(axis + side * 90)
         _draw_shoot(level - 1, shoot_size)
         turtle.setheading(diagonal_heading)
-
     if level > 0:
         _draw_diagonal_branch(level - 1, step, base_size, axis, side, max_shoot)
     turtle.backward(step)
@@ -52,7 +51,6 @@ def draw_branch(n: int, size: float) -> None:
         raise ValueError("Глубина должна быть целым числом от 0")
     if not 0 < size:
         raise ValueError("Длина должна быть больше нуля")
-
     max_shoot = None if n <= 4 else (2.6 / n) * size
 
     def grow(level: int) -> None:
@@ -71,11 +69,9 @@ def draw_branch(n: int, size: float) -> None:
         turtle.setheading(axis)
         grow(level - 1)
         turtle.backward(size)
-
     grow(n)
 
 import turtle
-
 
 def _draw_tree(depth: int, size: float, angle: float, gradual_reduction: bool) -> None:
     """Рекурсивно рисует дерево, затем возвращается к основанию."""
