@@ -53,8 +53,6 @@ def draw_branch(n: int, size: float) -> None:
     if not 0 < size:
         raise ValueError("Длина должна быть больше нуля")
 
-    # На глубине 5+ длинные побеги начинают пересекать соседние ярусы.
-    # При n <= 4 ограничение длины побегов не требуется.
     max_shoot = None if n <= 4 else (2.6 / n) * size
 
     def grow(level: int) -> None:
@@ -65,7 +63,6 @@ def draw_branch(n: int, size: float) -> None:
 
         axis = turtle.heading()
         turtle.forward(size)
-        # От основания к верхушке длина парных диагоналей убывает.
         step = 0.5 * size * level / (level + 1)
         turtle.setheading(axis + 45)
         _draw_diagonal_branch(level, step, size, axis, +1, max_shoot)
@@ -89,7 +86,6 @@ def _draw_tree(depth: int, size: float, angle: float, gradual_reduction: bool) -
 
     turtle.forward(size)
     turtle.right(angle)
-    # По умолчанию каждый следующий отрезок вдвое короче предыдущего.
     next_size = size * depth / (depth + 1) if gradual_reduction else size / 2
     _draw_tree(depth - 1, next_size, angle, gradual_reduction)
     turtle.left(2 * angle)
