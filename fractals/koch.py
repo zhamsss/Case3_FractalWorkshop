@@ -11,6 +11,8 @@ def koch(order, size):
     koch(order - 1, size / 3)
     t.left(60)
     koch(order - 1, size / 3)
+    
+    
 import turtle as t
 
 def koch(order, size):
@@ -34,6 +36,8 @@ def snowflake(order, size):
     for _ in range(3):
         koch(order, size)
         t.right(120)  
+
+
 import turtle as t
 
 def minkowski(order, size):
