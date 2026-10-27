@@ -1,5 +1,3 @@
-"""Рекурсивное построение фрактала «Ветка» с помощью turtle."""
-
 import turtle
 
 
@@ -9,10 +7,6 @@ def _draw_shoot(order: int, length: float) -> None:
         turtle.forward(length)
         turtle.backward(length)
         return
-
-    # Чем больше порядок, тем больше пар "усиков" вдоль побега.
-    # Их основания располагаются на 1/2 длины (order=2), на 0.3
-    # и 0.6 длины (order=3), и т.д.
     fractions = [i / (order + (0.35 if order >= 3 else 0.0))
                  for i in range(1, order)]
     previous = 0.0
@@ -82,7 +76,6 @@ def draw_branch(n: int, size: float) -> None:
         turtle.backward(size)
 
     grow(n)
-"""Рекурсивное построение двоичного дерева с помощью turtle."""
 
 import turtle
 
