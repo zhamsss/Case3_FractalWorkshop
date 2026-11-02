@@ -24,7 +24,7 @@ LIMITS = {
     "ice_order": (0, 4),
     "levy_order": (0, 12),
     "dragon_order": (0, 13),
-    "angle": (0.0, 180.0),
+    "angle": (1.0, 89.0),
     "size": (10.0, 500.0),
     "segment": (1.0, 50.0),
 }
@@ -117,8 +117,8 @@ def main():
             
         elif choice == "1":
             depth = ask_int("Глубина рекурсии (1-12): ", *LIMITS["tree_depth"])
-            size = ask_float("Размер ствола (10-400): ", *LIMITS["size"])
-            angle = ask_float("Угол ветвления (0-180): ", *LIMITS["angle"])
+            size = ask_float("Размер ствола (10-500): ", *LIMITS["size"])
+            angle = ask_float("Угол ветвления (1-89): ", *LIMITS["angle"])
             print("Рисую...", flush=True)
             reset_canvas("forestgreen")
             start_place(0, -250, 90)
@@ -127,7 +127,7 @@ def main():
 
         elif choice == "2":
             depth = ask_int("Глубина рекурсии (1-10): ", *LIMITS["branch_depth"])
-            size = ask_float("Размер ветки (10-400): ", *LIMITS["size"])
+            size = ask_float("Размер ветки (10-500): ", *LIMITS["size"])
             print("Рисую...", flush=True)
             reset_canvas("darkgreen")
             start_place(0, -250, 90)
