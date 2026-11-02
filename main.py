@@ -1,99 +1,3 @@
-""" «Фрактальная мастерская» роли 4."""
- 
-import turtle
-
-from pos1_tree import draw_binary_tree as draw_tree
-from pos1_branch import draw_branch
-
-from pos2_koch import koch
-from pos2_koch_snowflake import snowflake as koch_snowflake
-from pos2_minkowski import minkowski
-
-from pos3_ice1 import ice_fractal_1
-from pos3_ice2 import ice_fractal_2
-from pos3_levyKriv import levy
-from pos3_dragon_oogway import dragon
-
-# Настройки ограничений
-LIMITS = {
-    "tree_depth": (1, 12),
-    "branch_depth": (1, 10),
-    "koch_order": (0, 5),
-    "snowflake_order": (0, 5),
-    "minkowski_order": (0, 4),
-    "ice_order": (0, 4),
-    "levy_order": (0, 12),
-    "dragon_order": (0, 13),
-    "angle": (0.0, 180.0),
-    "size": (10.0, 500.0),
-    "segment": (1.0, 50.0),
-}
-
-USE_INSTANT_DRAW = True 
-
-
-def ask_int(prompt: str, min_val: int, max_val: int) -> int:
-    """Безопасный ввод целого числа."""
-    while True:
-        try:
-            val = int(input(prompt).strip())
-            if min_val <= val <= max_val:
-                return val
-            print(f"Ошибка: введите число в диапазоне от {min_val} до {max_val}.")
-        except ValueError:
-            print("Ошибка: требуется целое число.")
-
-
-def ask_float(prompt: str, min_val: float, max_val: float) -> float:
-    """Безопасный ввод вещественного числа."""
-    while True:
-        try:
-            val = float(input(prompt).strip().replace(",", "."))
-            if min_val <= val <= max_val:
-                return val
-            print(f"Ошибка: введите число в диапазоне от {min_val} до {max_val}.")
-        except ValueError:
-            print("Ошибка: требуется число (например, 150 или 45.5).")
-
-
-def show_menu() -> None:
-    print("\n" + "="*30)
-    print("=== ФРАКТАЛЬНАЯ МАСТЕРСКАЯ ===")
-    print("="*30)
-    print("1. Двоичное дерево")
-    print("2. Фрактал 'Ветка'")
-    print("3. Кривая Коха")
-    print("4. Снежинка Коха")
-    print("5. Кривая Минковского")
-    print("6. Ледяной фрактал №1")
-    print("7. Ледяной фрактал №2")
-    print("8. Кривая Леви")
-    print("9. Дракон Хартера-Хейтуэя")
-    print("10. Выход")
-    print("="*30)
-
-
-def reset_canvas(color: str = "black") -> None:
-    """Сброс экрана и подготовка черепашки."""
-    turtle.reset()
-    turtle.hideturtle()
-    turtle.speed(0)
-    turtle.pensize(1)
-    turtle.pencolor(color)
-    if USE_INSTANT_DRAW:
-        turtle.tracer(0, 0)
-    else:
-        turtle.tracer(1, 10)
-
-
-def start_place(x: float, y: float, heading: float) -> None:
-    """Установка стартовой позиции без рисования линий."""
-    turtle.penup()
-    turtle.goto(x, y)
-    turtle.setheading(heading)
-    turtle.pendown()
-
-
 def finish_drawing() -> None:
     """Обновление экрана и ожидание возврата в меню."""
     turtle.penup()
@@ -106,19 +10,19 @@ def main():
     screen = turtle.Screen()
     screen.title("Фрактальная мастерская — Итог")
     screen.setup(width=900, height=750)
-    
+
     while True:
         show_menu()
         choice = input("Выберите пункт меню (1-10): ").strip()
-        
+
         if choice == "10":
             print("Выход из программы. До свидания!")
             break
-            
+
         elif choice == "1":
             depth = ask_int("Глубина рекурсии (1-12): ", *LIMITS["tree_depth"])
-            size = ask_float("Размер ствола (10-400): ", *LIMITS["size"])
-            angle = ask_float("Угол ветвления (0-180): ", *LIMITS["angle"])
+            size = ask_float("Размер ствола (10-500): ", *LIMITS["size"])
+            angle = ask_float("Угол ветвления (1-89): ", *LIMITS["angle"])
             print("Рисую...", flush=True)
             reset_canvas("forestgreen")
             start_place(0, -250, 90)
@@ -127,7 +31,7 @@ def main():
 
         elif choice == "2":
             depth = ask_int("Глубина рекурсии (1-10): ", *LIMITS["branch_depth"])
-            size = ask_float("Размер ветки (10-400): ", *LIMITS["size"])
+            size = ask_float("Размер ветки (10-500): ", *LIMITS["size"])
             print("Рисую...", flush=True)
             reset_canvas("darkgreen")
             start_place(0, -250, 90)
@@ -199,7 +103,7 @@ def main():
 
         else:
             print("Неверный пункт. Выберите число от 1 до 10.")
-            
+
     turtle.bye()
 
 
