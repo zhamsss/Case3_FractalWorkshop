@@ -5,13 +5,13 @@ def _koch_recursive(order, size):
     if order == 0:
         t.forward(size)
         return
-     _koch_recursive(order - 1, size / 3)
+    _koch_recursive(order - 1, size / 3)
     t.left(60)
-     _koch_recursive(order - 1, size / 3)
+    _koch_recursive(order - 1, size / 3)
     t.right(120)
-     _koch_recursive(order - 1, size / 3)
+    _koch_recursive(order - 1, size / 3)
     t.left(60)
-     _koch_recursive(order - 1, size / 3)
+    _koch_recursive(order - 1, size / 3)
     
 def koch(order, size):
     """Рисует Кривую Коха в удобном месте экрана."""
@@ -29,7 +29,7 @@ def snowflake(order, size):
     t.setheading(0)   
 
     for _ in range(3):
-         _koch_recursive(order, size)
+        _koch_recursive(order, size)
         t.right(120)  
 
 
