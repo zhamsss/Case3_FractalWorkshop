@@ -1,61 +1,63 @@
 import turtle as t
 
-def koch(order, size):
+def _koch_recursive(order, size):
+    """Внутренняя рекурсивная функция для отрисовки кривой Коха."""
     if order == 0:
         t.forward(size)
         return
-    koch(order - 1, size / 3)
+     _koch_recursive(order - 1, size / 3)
     t.left(60)
-    koch(order - 1, size / 3)
+     _koch_recursive(order - 1, size / 3)
     t.right(120)
-    koch(order - 1, size / 3)
+     _koch_recursive(order - 1, size / 3)
     t.left(60)
-    koch(order - 1, size / 3)
+     _koch_recursive(order - 1, size / 3)
     
-    
-import turtle as t
-
 def koch(order, size):
-    if order == 0:
-        t.forward(size)
-        return
-    koch(order - 1, size / 3)
-    t.left(60)
-    koch(order - 1, size / 3)
-    t.right(120)
-    koch(order - 1, size / 3)
-    t.left(60)
-    koch(order - 1, size / 3)
+    """Рисует Кривую Коха в удобном месте экрана."""
+    t.up()
+    t.goto(-size / 2, 0) 
+    t.down()
+    t.setheading(0)    
+    _koch_recursive(order, size)    
 
 def snowflake(order, size):
+    """Рисует Снежинку Коха."""
     t.up()
     t.goto(-size / 2, size * (3 ** 0.5) / 6)
     t.down()
     t.setheading(0)   
 
     for _ in range(3):
-        koch(order, size)
+         _koch_recursive(order, size)
         t.right(120)  
 
 
-import turtle as t
-
-def minkowski(order, size):
+def _minkowski_recursive(order, size):
+    """Внутренняя рекурсивная функция для отрисовки кривой Минковского."""
     if order == 0:
         t.forward(size)
         return
 
-    minkowski(order - 1, size / 4)
+    _minkowski_recursive(order - 1, size / 4)
     t.left(90)
-    minkowski(order - 1, size / 4)
+    _minkowski_recursive(order - 1, size / 4)
     t.right(90)
-    minkowski(order - 1, size / 4)
+    _minkowski_recursive(order - 1, size / 4)
     t.right(90)
-    minkowski(order - 1, size / 4)
-    minkowski(order - 1, size / 4)
+    _minkowski_recursive(order - 1, size / 4)
+    _minkowski_recursive(order - 1, size / 4)
     t.left(90)
-    minkowski(order - 1, size / 4)
+    _minkowski_recursive(order - 1, size / 4)
     t.left(90)
-    minkowski(order - 1, size / 4)
+    _minkowski_recursive(order - 1, size / 4)
     t.right(90)
-    minkowski(order - 1, size / 4)
+    _minkowski_recursive(order - 1, size / 4)
+    
+def minkowski(order, size):
+    """Рисует Кривую Минковского в удобном месте экрана."""
+    t.up()
+    t.goto(-size / 2, 0) 
+    t.down()
+    t.setheading(0) 
+    _minkowski_recursive(order, size)
