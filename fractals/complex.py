@@ -1,27 +1,18 @@
 import turtle as t
+import math
 
-
-def dragon(order: int, size: float) -> None:
-    if order == 1:
-        t.left(45)
-        t.forward(size)
-        t.right(90)
+def dragon(order: int, size: float, sign: int = 1) -> None:
+    if order == 0:
         t.forward(size)
         return
-    if order == 2:
-        t.left(45)
-        dragon(order - 1, size)
-        t.right(90)
-        t.forward(size)
-        t.left(90)
-        t.forward(size)
-        return
-    t.left(45)
-    dragon(order - 1, size)
-    t.right(135)
-    dragon(order - 2, size)
-    t.left(45)
-    dragon(order - 2, size)
+
+    next_size = size / math.sqrt(2)
+    
+    t.left(45 * sign)
+    dragon(order - 1, next_size, 1)
+    t.right(90 * sign)
+    dragon(order - 1, next_size, -1)
+    t.left(45 * sign)
 
 
 def ice_fractal_1(order: int, size: float) -> None:
@@ -73,15 +64,13 @@ def ice_fractal_2(order: int, size: float) -> None:
 
 def levy(order: int, size: float) -> None:
     if order == 0:
-        t.left(45)
         t.forward(size)
-        t.right(90)
-        t.forward(size)
-        t.left(45)
         return
 
+    next_size = size / math.sqrt(2)
+    
     t.left(45)
-    levy(order - 1, size)
+    levy(order - 1, next_size)
     t.right(90)
-    levy(order - 1, size)
+    levy(order - 1, next_size)
     t.left(45)
